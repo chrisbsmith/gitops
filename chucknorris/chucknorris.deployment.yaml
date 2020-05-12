@@ -6,7 +6,7 @@ metadata:
   labels:
     name: chuck-norris
   name: chuck-norris
-  namespace: churcknorris
+  namespace: chuck-norris
 spec:
   minReadySeconds: 30
   replicas: 1
@@ -36,7 +36,7 @@ spec:
         stdin: false
         tty: false
         resources:
-          request:
+          requests:
             memory: 128Mi
             cpu: 200m
           limits:
