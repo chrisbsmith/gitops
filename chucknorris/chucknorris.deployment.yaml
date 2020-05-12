@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    name: chuck-norris
+  name: chuck-norris
+  namespace: churcknorris
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: chuck-norris
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        name: chuck-norris
+    spec:
+      containers:
+      - image: index.docker.io/chrismith/chuck-norris-logs:1.0
+        imagePullPolicy: IfNotPresent
+        name: chuck-norris
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1001
+        stdin: false
+        tty: false
+        resources:
+          request:
+            memory: 128Mi
+            cpu: 200m
+          limits:
+            memory: 256Mi
+            cpu: 400m
+      securityContext:
+        fsGroup: 65534
+      serviceAccountName: chuck-norris
+      terminationGracePeriodSeconds: 30

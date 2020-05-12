@@ -1,0 +1,19 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  annotations: {}
+  labels:
+    name: chuck-norris-role
+  name: chuck-norris-role
+  namespace: chuck-norris
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - "pods"
+      - "endpoints"
+    verbs:
+      - "get"
+      - "list"
+      - "watch"
